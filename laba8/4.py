@@ -1,24 +1,30 @@
-text = "abz dsa abc"
-k = (sorted(text.split()))
-
-print(text.split())
-t = (text.split())
-print(k)
-
-final = []
-i = 0
-while i < len(k):
-    if t[i] == sorted(t[i]):
-        final += k
-    i += 1
-print(final)
+import re
 
 
-# final = []
-# k = 0
-# while k < len(ar1):
-#     if ar1[k] == ar2[k]:
-#         final += ar2
-#     k += 1
-#
-# print(final)
+def check_word(oldWord):
+    array = list(oldWord)
+    alf = True
+    temp = array[0]
+    for j in range(1, len(oldWord), 1):
+        if re.match("[ ,.!?;:-]", str(array[j])):
+            break
+        if temp <= array[j]:
+            alf = True
+            temp = array[j]
+        else:
+            alf = False
+            break
+
+    if alf:
+        return ""
+    else:
+        return oldWord
+
+
+text = input("Введіть текст: ")
+words = text.split(" ")
+
+for i in range(len(words)):
+    words[i] = check_word(words[i])
+
+print(*words)
