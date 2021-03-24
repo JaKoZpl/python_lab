@@ -1,14 +1,5 @@
 import re
 
-# file1 = open("TF_1", "w")
-# file2 = open("TF_2", "w")
-
-# print(len(file1.read()))
-
-
-# file1.close()
-# file2.close()
-
 file1 = open("TF_1")
 allContent = file1.read()
 file1.close()
