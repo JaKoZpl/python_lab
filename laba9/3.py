@@ -1,14 +1,24 @@
-text = open("info.txt", "w")
+text = open("info.txt")
 finalText = open("final.txt", "w")
 
 while True:
     try:
-        a = int(input("Введіть значення a: "))
-        b = int(input("Введіть значення b: "))
-        arithmetic = input("Введіть дію: ")
+        a = 0
+        b = 0
+        operator = ""
 
-        text.write(str(a) + " " + arithmetic + " " + str(b) + "\n")
+        OpL = ["+", "-", "/", "*"]
 
+        file_content = text.read()
+        for i in file_content:
+            if i in OpL:
+                operator = i
+                file_content = file_content.split(i)
+
+        a = int(file_content[0])
+        b = int(file_content[1].strip())
+
+        print("Для завершення роботи введіть exit: ")
 
         arithmeticOperations = {
             "+": a + b,
@@ -17,12 +27,14 @@ while True:
             "/": a / b
         }
 
-        finallRez = arithmeticOperations[arithmetic]
-        print("Результат: " + str(finallRez))
+        finallRez = arithmeticOperations[operator]
 
-        finalText.write("Ваш вираз: " + str(a) + arithmetic + str(b) + " Результат: " + str(finallRez) + "\n")
+        finalText.write("Ваш вираз: " + str(a) + operator + str(b) + " Результат: " + str(finallRez) + "\n")
+        print(a)
+        print(b)
+        print(operator)
 
-        exit = input("Якщо бажаєте закінчити роботу введіть 'exit': ")
+        exit = input()
         if exit == "exit":
             break
     except ZeroDivisionError:
@@ -32,3 +44,10 @@ while True:
 
 finalText.close()
 text.close()
+
+
+# Вхідний файл:
+# 2
+# 3
+# operatisa = input("Введіть операцію: ")
+# a + operatisa + b
